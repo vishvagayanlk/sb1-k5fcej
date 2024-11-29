@@ -12,3 +12,13 @@ export interface BlogPost {
   tags: string[],
   readingTime: string,
 }
+
+
+export interface Project {
+  image: string
+  title: string
+  description: string
+  technologies: string[]
+  github?: string
+  demo?: string
+}

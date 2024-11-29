@@ -9,6 +9,9 @@ interface BlogPreviewProps {
 }
 
 export function BlogPreview({ posts = [] }: BlogPreviewProps) {
+  // Server-side default text
+  const description = "Explore articles about development, best practices, and tech insights"
+
   if (posts.length === 0) {
     return null
   }
@@ -25,8 +28,8 @@ export function BlogPreview({ posts = [] }: BlogPreviewProps) {
           <h2 className="text-4xl md:text-5xl font-cal mb-4">
             Latest <span className="gradient-text">Insights</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto font-matter">
-            Explore articles about development, best practices, and tech insights
+          <p className="text-gray-400 max-w-2xl mx-auto font-matter" suppressHydrationWarning>
+            {description}
           </p>
         </div>
 
@@ -64,7 +67,9 @@ export function BlogPreview({ posts = [] }: BlogPreviewProps) {
                   </p>
 
                   <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
+                    <span suppressHydrationWarning>
+                      {format(new Date(post.date), 'MMMM d, yyyy')}
+                    </span>
                     <span className="flex items-center gap-1">
                       <FiClock className="w-4 h-4" />
                       {post.readingTime}
